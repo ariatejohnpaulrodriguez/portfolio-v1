@@ -1,0 +1,589 @@
+/*============================================= GOOGLE FONTS =============================================*/
+/* We'll add a font link here later */
+
+/*============================================= VARIABLES CSS =============================================*/
+:root {
+  /* Colors */
+  /* Color mode HSL(hue, saturation, lightness) */
+  --first-color: hsl(207, 90%, 54%); /* A nice, professional blue for accents */
+  --first-color-alt: hsl(
+    207,
+    90%,
+    48%
+  ); /* A slightly darker blue for hover effects */
+  --title-color: hsl(228, 8%, 20%);
+  --text-color: hsl(228, 8%, 45%);
+  --body-color: hsl(40, 33%, 97%); /* Your beautiful #F8F6F1 */
+  --container-color: hsl(0, 0%, 100%); /* White for cards/containers to pop */
+
+  --text-color-light: hsl(228, 12%, 75%);
+  --border-color: hsl(228, 12%, 85%); /* New variable */
+  --body-color: hsl(40, 33%, 97%);
+
+  --first-color: hsl(207, 90%, 54%);
+  --success-color: hsl(140, 66%, 53%); /* ADD THIS LINE for our green color */
+  --first-color-alt: hsl(207, 90%, 48%);
+
+  /* Font and typography */
+  /* .5rem = 8px | 1rem = 16px ... */
+  --body-font: "Poppins", sans-serif;
+  --biggest-font-size: 2.25rem;
+  --h1-font-size: 1.5rem;
+  --h2-font-size: 1.25rem;
+  --h3-font-size: 1rem;
+  --normal-font-size: 0.938rem;
+  --small-font-size: 0.813rem;
+  --smaller-font-size: 0.75rem;
+
+  /* Font weight */
+  --font-medium: 500;
+  --font-semi-bold: 600;
+
+  /* z-index */
+  --z-tooltip: 10;
+  --z-fixed: 100;
+
+  /* Layout */
+  --header-height: 4rem;
+}
+
+/*============================================= BASE =============================================*/
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden; /* Prevent horizontal scroll */
+}
+
+body {
+  font-family: var(--body-font);
+  font-size: var(--normal-font-size);
+  background-color: var(--body-color);
+  color: var(--text-color);
+  overflow-x: hidden; /* Prevent horizontal scroll */
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+/*============================================= REUSABLE CSS CLASSES =============================================*/
+/* We will add classes like .container, .section, etc. here */
+
+/* Call to Action Button */
+.button {
+  display: inline-block;
+  background-color: var(--first-color);
+  color: #fff;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  font-weight: var(--font-semi-bold);
+  transition: background-color 0.3s;
+}
+
+.button:hover {
+  background-color: var(--first-color-alt);
+}
+
+.section__title {
+  font-size: var(--h1-font-size);
+  color: var(--title-color);
+  margin-bottom: 1.5rem;
+  text-align: center; /*Center titles by default */
+}
+
+/*============================================= HEADER & NAV =============================================*/
+header {
+  width: 100%;
+  background-color: var(--container-color);
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: var(--z-fixed);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0); /* Start with an invisible shadow */
+  transition: box-shadow 0.4s ease; /* Animate the box-shadow property */
+}
+
+header.scrolled {
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* The visible shadow from before */
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: var(--header-height);
+  padding: 0 2rem;
+}
+
+/* Logo */
+.logo {
+  font-size: var(--h1-font-size);
+  font-weight: var(--font-semi-bold);
+  color: var(--title-color);
+}
+
+/* Navigation Links */
+.nav-links {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.nav-links a {
+  color: var(--text-color);
+  font-weight: var(--font-medium);
+  transition: color 0.3s;
+}
+
+.nav-links a:hover {
+  color: var(--first-color);
+}
+
+/* Theme Toggle Button */
+.theme-toggle {
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+  color: var(--title-color);
+  transition: color 0.3s;
+}
+
+.theme-toggle:hover {
+  color: var(--first-color);
+}
+
+/* Add space at top of page content so it's not hidden behind the fixed header */
+body {
+  padding-top: var(--header-height);
+}
+
+/* Hamburger button */
+.menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: var(--title-color);
+}
+
+/* Responsive styles */
+@media screen and (max-width: 768px) {
+  nav {
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  .menu-toggle {
+    display: block;
+  }
+
+  .nav-links {
+    flex-direction: column;
+    width: 100%;
+    display: none;
+    margin-top: 1rem;
+    background-color: transparent; /* default state */
+  }
+
+  .nav-links.show {
+    display: flex;
+    background-color: var(--first-color); /* or any color you prefer */
+    border-radius: 0.5rem;
+    padding: 1rem 0;
+  }
+
+  .nav-links li {
+    text-align: center;
+    padding: 0.5rem 0;
+  }
+
+  .nav-links a {
+    color: #fff; /* white text for contrast */
+  }
+
+  .nav-links a:hover {
+    color: var(--container-color); /* optional hover effect */
+  }
+}
+
+/*============================================= HOME =============================================*/
+.home {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh; /* Full viewport height */
+  background-color: var(--body-color);
+  padding: 2rem;
+  text-align: center;
+}
+
+.home-content {
+  max-width: 800px;
+}
+
+/* Name */
+.home-title {
+  font-size: var(--biggest-font-size);
+  font-weight: var(--font-semi-bold);
+  color: var(--title-color);
+  margin-bottom: 0.5rem;
+}
+
+/* Title */
+.home-subtitle {
+  font-size: var(--h2-font-size);
+  color: var(--first-color);
+  margin-bottom: 1rem;
+}
+
+/* Tagline */
+.home-description {
+  font-size: var(--normal-font-size);
+  color: var(--text-color);
+  margin-bottom: 2rem;
+}
+
+/* Social Links */
+.home-social {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.home-social a {
+  font-size: 1.5rem; /* Make the icon bigger */
+  color: var(--title-color);
+  transition: color 0.3s;
+}
+
+.home-social a:hover {
+  color: var(--first-color);
+}
+
+/*============================================= ABOUT =============================================*/
+
+.about {
+  background-color: var(--container-color);
+  padding: 5rem 2rem;
+}
+
+.about-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3rem;
+  max-width: 1000px;
+  margin: 0 auto;
+  flex-wrap: wrap; /* makes it responsive */
+}
+
+/* Image Styling */
+.about-img img {
+  width: 280px;
+  height: 280px;
+  object-fit: cover;
+  border-radius: 50%; /* makes it circular */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Text Styling */
+.about-content {
+  flex: 1;
+  color: var(--text-color);
+}
+
+.about-content p {
+  font-size: var(--normal-font-size);
+  margin-bottom: 1rem;
+  line-height: 1.6;
+}
+
+.about-content .button {
+  margin-top: 1rem;
+}
+
+/* Responsive Layout */
+@media (max-width: 768px) {
+  .about-container {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .about-img img {
+    width: 200px;
+    height: 200px;
+  }
+}
+
+/*============================================= SKILLS =============================================*/
+.skills {
+  background-color: var(--body-color);
+  padding: 5rem 2rem;
+}
+
+.skills__container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.skills__group {
+  background-color: var(--container-color);
+  padding: 2rem;
+  border-radius: 1rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.skills__group-title {
+  font-size: var(--h2-font-size);
+  color: var(--title-color);
+  margin-bottom: 2rem; /* Added more space */
+  text-align: center;
+}
+
+/* New list styling */
+.skills__list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem; /* Space between each skill bar */
+}
+
+.skills__item {
+  list-style: none;
+}
+
+.skills__data {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.skills__names {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: var(--font-medium);
+  color: var(--title-color);
+  margin-bottom: 0.5rem;
+}
+
+.skills__names i {
+  font-size: 1.2rem;
+  color: var(--first-color);
+}
+
+/* The bar itself */
+.skills__bar {
+  background-color: var(--border-color);
+  height: 8px;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.skills__progress {
+  display: block;
+  height: 100%;
+  border-radius: 4px;
+}
+
+/* Our color logic classes */
+.skills__progress.level-intermediate {
+  background-color: var(--first-color);
+}
+
+.skills__progress.level-advanced {
+  background-color: var(--success-color);
+}
+
+.skills__progress.level-high {
+  background-color: var(--first-color); /* Blue for ≥50% */
+}
+
+.skills__progress.level-low {
+  background-color: var(--success-color); /* Green for <50% */
+}
+
+/*============================================= PROJECTS =============================================*/
+.projects {
+  background-color: var(--container-color);
+  padding: 4rem 2rem;
+}
+
+.project__container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.project__card {
+  background-color: var(--container-color);
+  border-radius: 1rem;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: transform 0.3s, box-shadow 0.3s;
+  padding-bottom: 1.5rem;
+}
+
+.project__card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.project__img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.project__title {
+  font-size: var(--h2-font-size);
+  color: var(--title-color);
+  margin: 1rem 1.5rem 0.5rem;
+}
+
+.project__description {
+  font-size: var(--small-font-size);
+  color: var(--text-color);
+  margin: 0 1.5rem 1rem;
+  line-height: 1.5;
+}
+
+.project__buttons {
+  display: flex;
+  gap: 1rem;
+  margin: 0 1.5rem;
+}
+
+/* Ghost Button Modifier */
+.button--ghost {
+  background-color: transparent;
+  border: 2px solid var(--first-color);
+  color: var(--first-color);
+  transition: all 0.3s;
+}
+
+.button--ghost:hover {
+  background-color: var(--first-color);
+  color: #fff;
+}
+
+/*============================================= CONTACT =============================================*/
+.contact {
+  padding: 4rem 2rem;
+  text-align: center;
+}
+
+.contact__form {
+  max-width: 600px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  background-color: var(--container-color);
+  padding: 2rem;
+  border-radius: 1rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.form__group {
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  font-weight: var(--font-medium);
+  color: var(--title-color);
+  margin-bottom: 0.5rem;
+}
+
+input,
+textarea {
+  padding: 0.75rem 1rem;
+  border: 2px solid var(--border-color);
+  border-radius: 0.5rem;
+  font-size: var(--normal-font-size);
+  font-family: inherit;
+  background-color: var(--body-color);
+  color: var(--text-color);
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+input:focus,
+textarea:focus {
+  border-color: var(--first-color);
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
+  outline: none;
+}
+
+button[type="submit"] {
+  align-self: flex-start;
+  margin-top: 0.5rem;
+}
+
+/*============================================= FOOTER =============================================*/
+.footer {
+  background-color: var(--container-color);
+  padding: 2rem;
+  border-top: 1px solid var(--border-color);
+}
+
+.footer__container {
+  max-width: 1000px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap; /* For responsiveness */
+  gap: 1rem;
+}
+
+.footer__copyright {
+  font-size: var(--small-font-size);
+  color: var(--text-color);
+}
+
+.footer__social {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.footer__social a {
+  font-size: 1.5rem;
+  color: var(--text-color);
+  transition: color 0.3s;
+}
+
+.footer__social a:hover {
+  color: var(--first-color);
+}
+
+@media screen and (max-width: 768px) {
+  .footer__container {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .footer__copyright {
+    width: 100%;
+  }
+
+  .footer__social {
+    justify-content: center;
+  }
+}
